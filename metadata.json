@@ -1,0 +1,8 @@
+
+{
+  "name": "KegelCoach - Premium Pelvic Health for Men",
+  "description": "A premium, minimalist landing page with AI-generated visuals, dark mode, and multi-language support for male pelvic health coaching.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
