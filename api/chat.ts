@@ -18,9 +18,9 @@ const apiKey = process.env.GEMINI_API_KEY;
 // Checking package.json, it has @google/genai.
 // Let's use standard fetch API for the handler.
 
-export const config = {
-    runtime: 'edge', // Using Edge runtime for lower latency if compatible, or default to Node
-};
+// export const config = {
+//   runtime: 'edge', // Using Node.js runtime for better compatibility with @google/genai
+// };
 
 export default async function handler(req: Request) {
     // 1. Authenticate the user
