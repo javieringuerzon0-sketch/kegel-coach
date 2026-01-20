@@ -127,18 +127,22 @@ const App: React.FC = () => {
     if (plan) {
       setSelectedPlan(plan);
 
-      if (!userEmail) {
-        alert("Email required for checkout");
-        return;
+      let emailToUse = userEmail;
+
+      if (!emailToUse) {
+        const input = window.prompt(language === 'en' ? "Please enter your email to continue:" : "Por favor ingresa tu email para continuar:");
+        if (!input) return;
+        setUserEmail(input);
+        emailToUse = input;
       }
 
       setIsSyncing(true);
-      await db.saveLead({ email: userEmail, selectedPlanId: planId });
+      await db.saveLead({ email: emailToUse, selectedPlanId: planId });
 
       try {
         const priceIdKey = planId === 'yearly' ? import.meta.env.VITE_STRIPE_PRICE_ID_YEARLY : import.meta.env.VITE_STRIPE_PRICE_ID_MONTHLY;
         if (priceIdKey) {
-          await redirectToCheckout(priceIdKey, userEmail);
+          await redirectToCheckout(priceIdKey, emailToUse);
         } else {
           // Fallback for demo if no keys
           console.warn('No Stripe Keys found, simulating success after delay');
