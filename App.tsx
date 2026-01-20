@@ -127,17 +127,13 @@ const App: React.FC = () => {
     if (plan) {
       setSelectedPlan(plan);
 
-      let emailToUse = userEmail;
+      const emailToUse = userEmail || undefined;
 
-      if (!emailToUse) {
-        const input = window.prompt(language === 'en' ? "Please enter your email to continue:" : "Por favor ingresa tu email para continuar:");
-        if (!input) return;
-        setUserEmail(input);
-        emailToUse = input;
-      }
-
+      // We still try to save if we have it, or just planId
       setIsSyncing(true);
-      await db.saveLead({ email: emailToUse, selectedPlanId: planId });
+      if (emailToUse) {
+        await db.saveLead({ email: emailToUse, selectedPlanId: planId });
+      }
 
       try {
         const priceIdKey = planId === 'yearly' ? import.meta.env.VITE_STRIPE_PRICE_ID_YEARLY : import.meta.env.VITE_STRIPE_PRICE_ID_MONTHLY;
