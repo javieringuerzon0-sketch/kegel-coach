@@ -146,8 +146,9 @@ const App: React.FC = () => {
             handleCheckoutSuccess();
           }, 1500);
         }
-      } catch (e) {
+      } catch (e: any) {
         console.error(e);
+        alert(`Checkout Error: ${e.message}`);
         setIsSyncing(false);
       }
     }
