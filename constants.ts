@@ -1,11 +1,11 @@
 import { QuizStep, Testimonial, Plan } from './types';
 
 export const COLORS = {
-  primary: '#0F172A', 
-  secondary: '#0EA5E9', 
-  accent: '#F43F5E', 
-  darkBg: '#020617', 
-  lightBg: '#FFFFFF', 
+  primary: '#0F172A',
+  secondary: '#0EA5E9',
+  accent: '#F43F5E',
+  darkBg: '#020617',
+  lightBg: '#FFFFFF',
 };
 
 export const QUIZ_DATA: QuizStep[] = [
@@ -41,7 +41,7 @@ export const QUIZ_DATA: QuizStep[] = [
     data: {
       id: 'i1',
       title: { en: 'The Foundation of Power', es: 'La Base del Poder' },
-      content: { 
+      content: {
         en: 'The Pubococcygeus (PC) muscle is the hidden core of male vitality. Strengthening it directly correlates with increased blood flow and neurological control.',
         es: 'El músculo Pubocoxígeo (PC) es el núcleo oculto de la vitalidad masculina. Fortalecerlo se correlaciona directamente con un mayor flujo sanguíneo y control neurológico.'
       },
@@ -79,7 +79,7 @@ export const QUIZ_DATA: QuizStep[] = [
     data: {
       id: 'i2',
       title: { en: 'Master Your Stamina', es: 'Domina tu Resistencia' },
-      content: { 
+      content: {
         en: 'Stamina is a skill, not just luck. By training the pelvic floor, you gain the ability to voluntarily regulate arousal and delay ejaculation naturally.',
         es: 'La resistencia es una habilidad, no solo suerte. Al entrenar el suelo pélvico, obtienes la capacidad de regular voluntariamente la excitación y retrasar la eyaculación de forma natural.'
       },
@@ -116,7 +116,7 @@ export const QUIZ_DATA: QuizStep[] = [
     data: {
       id: 'i3',
       title: { en: 'Blood Flow is King', es: 'El Flujo Sanguíneo es el Rey' },
-      content: { 
+      content: {
         en: 'Erection quality depends 100% on vascular efficiency. A strong pelvic floor acts as a valve, maintaining healthy pressure for longer, harder erections.',
         es: 'La calidad de la erección depende al 100% de la eficiencia vascular. Un suelo pélvico fuerte actúa como una válvula, manteniendo una presión saludable para erecciones más largas y firmes.'
       },
@@ -153,7 +153,7 @@ export const QUIZ_DATA: QuizStep[] = [
     data: {
       id: 'i4',
       title: { en: 'Combat The Sitting Epidemic', es: 'Combate la Epidemia del Sedentarismo' },
-      content: { 
+      content: {
         en: 'Prolonged sitting compresses the pelvic floor and restricts circulation. Our routine "reboots" your system, reversing the negative effects of office work.',
         es: 'Estar sentado por mucho tiempo comprime el suelo pélvico y restringe la circulación. Nuestra rutina "reinicia" tu sistema, revirtiendo los efectos negativos del trabajo de oficina.'
       },
@@ -189,7 +189,7 @@ export const QUIZ_DATA: QuizStep[] = [
     data: {
       id: 'i5',
       title: { en: 'Long-term Prostate Health', es: 'Salud Prostática a Largo Plazo' },
-      content: { 
+      content: {
         en: 'Pelvic exercises reduce congestion in the prostate area and improve urinary flow. It is a vital investment in your future longevity as a man.',
         es: 'Los ejercicios pélvicos reducen la congestión en el área prostática y mejoran el flujo urinario. Es una inversión vital en tu futura longevidad como hombre.'
       },
@@ -226,7 +226,7 @@ export const QUIZ_DATA: QuizStep[] = [
     data: {
       id: 'i6',
       title: { en: 'Recovery & Peak Testosterone', es: 'Recuperación y Testosterona Máxima' },
-      content: { 
+      content: {
         en: 'Testosterone is primarily produced during deep REM sleep. Proper pelvic circulation enhances the hormonal feedback loop, ensuring you wake up ready.',
         es: 'La testosterona se produce principalmente durante el sueño REM profundo. La circulación pélvica adecuada mejora el ciclo de retroalimentación hormonal, asegurando que te despiertes listo.'
       },
@@ -262,7 +262,7 @@ export const QUIZ_DATA: QuizStep[] = [
     data: {
       id: 'i7',
       title: { en: 'The Confidence Connection', es: 'La Conexión de la Confianza' },
-      content: { 
+      content: {
         en: 'Psychological performance is tied to physical mastery. Eliminating anxiety about performance creates a positive feedback loop that benefits your entire lifestyle.',
         es: 'El rendimiento psicológico está ligado al dominio físico. Eliminar la ansiedad por el rendimiento crea un ciclo de retroalimentación positiva que beneficia todo tu estilo de vida.'
       },
@@ -299,7 +299,7 @@ export const QUIZ_DATA: QuizStep[] = [
     data: {
       id: 'i8',
       title: { en: 'The 5-Minute Daily Habit', es: 'El Hábito Diario de 5 Minutos' },
-      content: { 
+      content: {
         en: 'Consistency beats intensity. Our high-efficiency routines are designed to deliver maximum results in minimum time, making it impossible to fail.',
         es: 'La constancia vence a la intensidad. Nuestras rutinas de alta eficiencia están diseñadas para ofrecer máximos resultados en el mínimo tiempo, haciendo imposible fallar.'
       },
@@ -334,7 +334,7 @@ export const QUIZ_DATA: QuizStep[] = [
     data: {
       id: 'i9',
       title: { en: 'AI-Driven Personalization', es: 'Personalización Impulsada por IA' },
-      content: { 
+      content: {
         en: 'No two bodies are the same. Our engine creates a unique progression path for you, adjusting daily based on your biometric feedback.',
         es: 'No hay dos cuerpos iguales. Nuestro motor crea un camino de progresión único para ti, ajustándose diariamente en función de tu feedback biométrico.'
       },
@@ -358,7 +358,7 @@ export const QUIZ_DATA: QuizStep[] = [
     data: {
       id: 'i10',
       title: { en: 'Your Performance Dashboard', es: 'Tu Panel de Rendimiento' },
-      content: { 
+      content: {
         en: 'Track every micro-improvement. Visualizing your progress reinforces the habit and guarantees long-term success through data-driven coaching.',
         es: 'Sigue cada micro-mejora. Visualizar tu progreso refuerza el hábito y garantiza el éxito a largo plazo mediante coaching basado en datos.'
       },
@@ -383,7 +383,7 @@ export const TESTIMONIALS: Testimonial[] = [
     id: 't1',
     name: 'David R.',
     age: 34,
-    content: { 
+    content: {
       en: "KegelCoach changed my life. After just 3 weeks, my stamina improved drastically.",
       es: "KegelCoach cambió mi vida. Después de solo 3 semanas, mi resistencia mejoró drásticamente."
     },
@@ -395,7 +395,7 @@ export const TESTIMONIALS: Testimonial[] = [
     id: 't2',
     name: 'Mark S.',
     age: 45,
-    content: { 
+    content: {
       en: "Professional interface and easy to follow. No more nightly bathroom trips.",
       es: "Interfaz profesional y fácil de seguir. Se acabaron los viajes nocturnos al baño."
     },
@@ -407,7 +407,7 @@ export const TESTIMONIALS: Testimonial[] = [
     id: 't3',
     name: 'James T.',
     age: 28,
-    content: { 
+    content: {
       en: "The science is real. It's like a gym for your most important muscles.",
       es: "La ciencia es real. Es como un gimnasio para tus músculos más importantes."
     },
@@ -426,8 +426,16 @@ export const PLANS: Plan[] = [
     totalPrice: 19.99,
   },
   {
+    id: 'p3',
+    name: { en: 'Quarterly Kickstart', es: 'Inicio Trimestral' },
+    duration: { en: '3 Months', es: '3 Meses' },
+    pricePerMonth: 14.99,
+    totalPrice: 44.97,
+    savings: '25%',
+  },
+  {
     id: 'p2',
-    name: { en: 'Ultimate Transformation', es: 'Transformación Definitiva' },
+    name: { en: 'Ultimate Transformation (6M)', es: 'Transformación (6 Meses)' },
     duration: { en: '6 Months', es: '6 Meses' },
     pricePerMonth: 9.99,
     totalPrice: 59.94,
@@ -435,11 +443,11 @@ export const PLANS: Plan[] = [
     isPopular: true,
   },
   {
-    id: 'p3',
-    name: { en: 'Quarterly Kickstart', es: 'Inicio Trimestral' },
-    duration: { en: '3 Months', es: '3 Meses' },
-    pricePerMonth: 14.99,
-    totalPrice: 44.97,
-    savings: '25%',
+    id: 'p4',
+    name: { en: 'Annual Mastery', es: 'Maestría Anual' },
+    duration: { en: '1 Year', es: '1 Año' },
+    pricePerMonth: 7.99,
+    totalPrice: 95.88,
+    savings: '60%',
   }
 ];

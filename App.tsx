@@ -136,7 +136,15 @@ const App: React.FC = () => {
       }
 
       try {
-        const priceIdKey = planId === 'yearly' ? import.meta.env.VITE_STRIPE_PRICE_ID_YEARLY : import.meta.env.VITE_STRIPE_PRICE_ID_MONTHLY;
+        let priceIdKey;
+        switch (planId) {
+          case 'p1': priceIdKey = import.meta.env.VITE_STRIPE_PRICE_ID_MONTHLY; break;
+          case 'p3': priceIdKey = import.meta.env.VITE_STRIPE_PRICE_ID_QUARTERLY; break;
+          case 'p2': priceIdKey = import.meta.env.VITE_STRIPE_PRICE_ID_BIANNUAL; break;
+          case 'p4': priceIdKey = import.meta.env.VITE_STRIPE_PRICE_ID_YEARLY; break;
+          default: priceIdKey = '';
+        }
+
         if (priceIdKey) {
           await redirectToCheckout(priceIdKey, emailToUse);
         } else {
