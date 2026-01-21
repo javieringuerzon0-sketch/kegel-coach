@@ -148,11 +148,8 @@ const App: React.FC = () => {
         if (priceIdKey) {
           await redirectToCheckout(priceIdKey, emailToUse);
         } else {
-          // Fallback for demo if no keys
-          console.warn('No Stripe Keys found, simulating success after delay');
-          setTimeout(() => {
-            handleCheckoutSuccess();
-          }, 1500);
+          console.error('Missing Stripe Price ID for plan:', planId);
+          alert('Error de configuración: No se encontró el ID de precio de Stripe para este plan. Por favor contacta soporte.');
         }
       } catch (e: any) {
         console.error(e);
