@@ -25,7 +25,7 @@ export default async function handler(req, res) {
             customer_email: email,
         });
 
-        res.status(200).json({ sessionId: session.id });
+        res.status(200).json({ sessionId: session.id, url: session.url });
     } catch (error) {
         console.error('Stripe API Error:', error);
         res.status(500).json({ error: error.message });
