@@ -1,9 +1,7 @@
 
 import React from 'react';
-// Added ShieldCheck to imports to fix the error on line 98
 import { Check, ShieldCheck } from 'lucide-react';
 import { PLANS } from '../../constants';
-import Button from '../ui/Button';
 
 interface PricingProps {
   onSelect: (planId: string) => void;
@@ -70,14 +68,17 @@ const Pricing: React.FC<PricingProps> = ({ onSelect, language, t }) => {
                 )}
               </div>
 
-              <Button 
+              <button
                 onClick={() => onSelect(plan.id)}
-                fullWidth 
-                variant={plan.isPopular ? 'primary' : 'secondary'}
-                className="text-lg py-6"
+                className={`
+                  w-full py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all duration-300
+                  ${plan.isPopular
+                    ? 'bg-gradient-to-r from-sky-500 to-cyan-400 text-slate-950 hover:from-sky-400 hover:to-cyan-300 shadow-lg shadow-sky-500/30 hover:shadow-xl hover:shadow-sky-500/40 hover:scale-[1.02]'
+                    : 'bg-slate-800 text-white hover:bg-slate-700 border border-slate-700 hover:border-slate-600 hover:scale-[1.02]'}
+                `}
               >
-                {language === 'en' ? 'Select Plan' : 'Seleccionar Plan'}
-              </Button>
+                {language === 'en' ? 'Get Started' : 'Comenzar Ahora'}
+              </button>
             </div>
           ))}
         </div>
