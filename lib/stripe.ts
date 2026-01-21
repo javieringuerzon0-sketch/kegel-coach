@@ -3,21 +3,29 @@ import { loadStripe } from '@stripe/stripe-js';
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '');
 
 export const redirectToCheckout = async (priceId: string, email?: string) => {
+    // Call the backend to create a session
+    const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ priceId, email }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.error || 'Network response was not ok');
+    }
+
+    const { sessionId } = data;
+
     const stripe = await stripePromise;
     if (!stripe) throw new Error('Stripe failed to initialize.');
 
-    const checkoutOptions: any = {
-        lineItems: [{ price: priceId, quantity: 1 }],
-        mode: 'subscription',
-        successUrl: `${window.location.origin}/?success=true&session_id={CHECKOUT_SESSION_ID}`,
-        cancelUrl: `${window.location.origin}/`,
-    };
-
-    if (email) {
-        checkoutOptions.customerEmail = email;
-    }
-
-    const { error } = await stripe.redirectToCheckout(checkoutOptions);
+    const { error } = await stripe.redirectToCheckout({
+        sessionId,
+    });
 
     if (error) {
         console.error('Stripe Checkout Error:', error);
