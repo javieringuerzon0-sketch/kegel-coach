@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Question } from '../../types';
+import { Question, LocalizedString } from '../../types';
 import OptionButton from './OptionButton';
 
 interface QuestionCardProps {
   question: Question;
   onSelect: (value: string) => void;
   language: string;
-  t: (ls: any) => string;
+  t: (ls: LocalizedString | string) => string;
 }
 
 const QuestionCard: React.FC<QuestionCardProps> = ({ question, onSelect, t }) => {

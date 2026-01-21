@@ -1,22 +1,42 @@
 import React, { useState } from 'react';
 import Button from '../ui/Button';
 import { Lock, Mail, CreditCard, ArrowLeft, Check } from 'lucide-react';
-import { Plan } from '../../types';
+import { Plan, LocalizedString } from '../../types';
 
 interface CheckoutProps {
   plan: Plan;
   onBack: () => void;
   onSuccess: () => void;
   language: string;
-  t: (ls: any) => string;
+  t: (ls: LocalizedString | string) => string;
 }
 
 const Checkout: React.FC<CheckoutProps> = ({ plan, onBack, onSuccess, t }) => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+    if (value && !validateEmail(value)) {
+      setEmailError('Please enter a valid email address');
+    } else {
+      setEmailError('');
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateEmail(email)) {
+      setEmailError('Please enter a valid email address');
+      return;
+    }
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -45,14 +65,15 @@ const Checkout: React.FC<CheckoutProps> = ({ plan, onBack, onSuccess, t }) => {
             </h3>
             <div className="space-y-3">
               <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Email Address</label>
-              <input 
-                type="email" 
+              <input
+                type="email"
                 required
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
                 placeholder="you@example.com"
-                className="w-full px-5 py-4 rounded-2xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all placeholder:text-slate-600 font-bold"
+                className={`w-full px-5 py-4 rounded-2xl bg-slate-800 border text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all placeholder:text-slate-600 font-bold ${emailError ? 'border-red-500' : 'border-slate-700'}`}
               />
+              {emailError && <p className="text-[10px] text-red-500 uppercase font-bold tracking-wider">{emailError}</p>}
               <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Access credentials sent via secure server.</p>
             </div>
           </div>

@@ -2,11 +2,12 @@
 import React from 'react';
 import { Check, ShieldCheck } from 'lucide-react';
 import { PLANS } from '../../constants';
+import { LocalizedString } from '../../types';
 
 interface PricingProps {
   onSelect: (planId: string) => void;
   language: string;
-  t: (ls: any) => string;
+  t: (ls: LocalizedString | string) => string;
 }
 
 const Pricing: React.FC<PricingProps> = ({ onSelect, language, t }) => {

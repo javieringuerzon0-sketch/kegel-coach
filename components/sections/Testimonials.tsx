@@ -28,12 +28,12 @@ const TestimonialAvatar = ({ src, alt }: { src: string; alt: string }) => {
   );
 };
 
-const Testimonials: React.FC<TestimonialsProps> = ({ t }) => {
+const Testimonials: React.FC<TestimonialsProps> = ({ language, t }) => {
   return (
-    <section className="py-24 bg-white dark:bg-slate-950 px-4">
+    <section id="testimonials" className="py-24 bg-white dark:bg-slate-950 px-4">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-4xl font-black text-[#2C3E50] dark:text-white mb-16 tracking-tighter uppercase italic">
-          Real Results from Real Men
+          {language === 'en' ? 'Real Results from Real Men' : 'Resultados Reales de Hombres Reales'}
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

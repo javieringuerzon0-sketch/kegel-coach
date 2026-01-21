@@ -1,5 +1,5 @@
 import React from 'react';
-import { InfoSlide as InfoSlideType } from '../../types';
+import { InfoSlide as InfoSlideType, LocalizedString } from '../../types';
 import Button from '../ui/Button';
 import { TrendingUp, CheckCircle, Sparkles } from 'lucide-react';
 import ImageGen from '../ui/ImageGen';
@@ -8,7 +8,7 @@ interface InfoSlideProps {
   slide: InfoSlideType;
   onNext: () => void;
   language: string;
-  t: (ls: any) => string;
+  t: (ls: LocalizedString | string) => string;
 }
 
 const InfoSlide: React.FC<InfoSlideProps> = ({ slide, onNext, t, language }) => {

@@ -27,10 +27,9 @@ export interface InfoSlide {
   imagePrompt: string; // Used for AI image generation
 }
 
-export interface QuizStep {
-  type: 'question' | 'info';
-  data: Question | InfoSlide;
-}
+export type QuizStep =
+  | { type: 'question'; data: Question }
+  | { type: 'info'; data: InfoSlide };
 
 export interface Testimonial {
   id: string;

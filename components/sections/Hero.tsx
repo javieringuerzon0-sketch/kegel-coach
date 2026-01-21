@@ -2,14 +2,15 @@ import React from 'react';
 import Button from '../ui/Button';
 import { ChevronRight, Zap, Award } from 'lucide-react';
 import ImageGen from '../ui/ImageGen';
+import { LocalizedString } from '../../types';
 
 interface HeroProps {
   onStart: () => void;
   language: string;
-  t: (ls: any) => string;
+  t: (ls: LocalizedString | string) => string;
 }
 
-const Hero: React.FC<HeroProps> = ({ onStart, language, t }) => {
+const Hero: React.FC<HeroProps> = ({ onStart, language }) => {
   return (
     <div className="min-h-[90vh] flex flex-col items-center justify-center px-4 overflow-hidden relative">
       {/* Decorative premium blobs */}

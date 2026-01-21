@@ -1,12 +1,3 @@
-
-export interface UserRecord {
-  email?: string;
-  quizAnswers: Record<string, string>;
-  selectedPlanId?: string;
-  isSubscribed: boolean;
-  timestamp: number;
-}
-
 import { supabase } from './lib/supabaseClient';
 
 export interface UserRecord {

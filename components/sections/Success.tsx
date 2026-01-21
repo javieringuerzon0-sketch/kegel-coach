@@ -1,13 +1,13 @@
 import React from 'react';
-import Button from '../ui/Button';
 import { CheckCircle, Smartphone, Download, Star } from 'lucide-react';
+import { LocalizedString } from '../../types';
 
 interface SuccessProps {
   language: string;
-  t: (ls: any) => string;
+  t: (ls: LocalizedString | string) => string;
 }
 
-const Success: React.FC<SuccessProps> = ({ language, t }) => {
+const Success: React.FC<SuccessProps> = () => {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 dark:bg-slate-950">
       <div className="max-w-xl w-full text-center">

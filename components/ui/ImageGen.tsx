@@ -10,17 +10,17 @@ interface ImageGenProps {
  * URLs de Unsplash actualizadas y verificadas para evitar fallos de carga.
  */
 const IMAGE_ASSETS: Record<string, string> = {
-  hero: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&q=80&w=2000',
-  anatomy: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=1200',
-  stamina: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=1200',
-  bloodflow: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200',
-  sitting: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&q=80&w=1200',
-  longevity: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&q=80&w=1200',
-  recovery: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1200',
-  mindset: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=1200',
-  habit: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&q=80&w=1200',
-  ai_tech: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200',
-  performance_stats: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200',
+  hero: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  anatomy: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  stamina: 'https://images.unsplash.com/photo-1577221084712-45b0445d2b00?q=80&w=698&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  bloodflow: 'https://images.unsplash.com/photo-1718248028293-934f04a578db?q=80&w=986&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  sitting: 'https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  longevity: 'https://plus.unsplash.com/premium_photo-1733342645393-8d00c5e901b9?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  recovery: 'https://images.unsplash.com/photo-1607824135829-4aa56d718c58?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  mindset: 'https://images.unsplash.com/photo-1674504502895-3ac04ab2943e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  habit: 'https://images.unsplash.com/photo-1669322779651-5ca89652492e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  ai_tech: 'https://plus.unsplash.com/premium_photo-1683121710572-7723bd2e235d?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  performance_stats: 'https://images.unsplash.com/photo-1626984260200-baa56cbf0f05?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   fallback: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1200'
 };
 
@@ -55,7 +55,7 @@ const ImageGen: React.FC<ImageGenProps> = ({ prompt, className = "", priority = 
     if (lowerP.includes('habit')) return 'habit';
     if (lowerP.includes('ai_tech')) return 'ai_tech';
     if (lowerP.includes('performance_stats')) return 'performance_stats';
-    return 'fallback'; 
+    return 'fallback';
   };
 
   const assetKey = getAssetKey(prompt);
@@ -69,9 +69,9 @@ const ImageGen: React.FC<ImageGenProps> = ({ prompt, className = "", priority = 
           <div className="w-10 h-10 border-4 border-sky-500/10 border-t-sky-500 rounded-full animate-spin" />
         </div>
       )}
-      
-      <img 
-        src={imageUrl} 
+
+      <img
+        src={imageUrl}
         alt={altText}
         loading={priority ? "eager" : "lazy"}
         className={`w-full h-full object-cover transition-all duration-[1s] group-hover:scale-110 relative z-10 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}

@@ -42,24 +42,15 @@ const App: React.FC = () => {
 
     // Recuperar sesión de Antigravity al cargar
     const initDB = async () => {
-      const user = await db.getUser(userEmail); // Note: Initial load might not have email if not persisted locally yet. 
-      // But typically we might check local storage or auth state first. 
-      // For this simple flow, let's assume we might have it or just check generic.
-      // Actually, standard pattern is to check auth session. 
-      // Since we are mocking auth via "Quiz Email", we might not have it on reload unless we save it to localStorage too.
-      // Let's check db.getRawData() which might have it from localStorage if we kept that valid.
-
       const localData = db.getRawData();
-      if (localData.email) setUserEmail(localData.email);
-
       if (localData.email) {
+        setUserEmail(localData.email);
         const user = await db.getUser(localData.email);
         if (user?.isSubscribed) {
           setState('success');
         }
       }
     };
-    initDB();
     initDB();
   }, []);
 
@@ -90,20 +81,15 @@ const App: React.FC = () => {
 
   const handleAnswerSelect = async (value: string) => {
     setIsSyncing(true);
-    const user = db.getRawData(); // This is synchronous local fallback or we need to manage state better
-    // Ideally we update state
-    if (QUIZ_DATA[stepIndex].type === 'input' && (QUIZ_DATA[stepIndex].data as any).inputType === 'email') {
-      setUserEmail(value);
-      await db.saveLead({ email: value });
-    }
+    const user = db.getRawData();
 
-    const questionId = QUIZ_DATA[stepIndex].type === 'question' ? (QUIZ_DATA[stepIndex].data as any).id : 'info_slide';
+    const currentStepData = QUIZ_DATA[stepIndex].data;
+    const questionId = QUIZ_DATA[stepIndex].type === 'question' ? currentStepData.id : 'info_slide';
 
     // Sincronización con Antigravity
-    if (userEmail || (QUIZ_DATA[stepIndex].type === 'input' && (QUIZ_DATA[stepIndex].data as any).inputType === 'email')) {
-      const currentEmail = userEmail || value; // If this step is email, use value
+    if (userEmail) {
       await db.saveLead({
-        email: currentEmail,
+        email: userEmail,
         quizAnswers: { ...user.quizAnswers, [questionId]: value }
       });
     }
@@ -248,7 +234,7 @@ const App: React.FC = () => {
           <>
             <Hero onStart={handleStartQuiz} language={language} t={t} />
 
-            <section className="py-24 px-4 bg-white dark:bg-transparent">
+            <section id="how-it-works" className="py-24 px-4 bg-white dark:bg-transparent">
               <div className="max-w-4xl mx-auto text-center">
                 <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-12 italic uppercase tracking-tighter">
                   {language === 'en' ? 'How it Works' : 'Cómo Funciona'}
@@ -273,7 +259,7 @@ const App: React.FC = () => {
               </div>
             </section>
 
-            <section className="py-24 px-4 bg-slate-50 dark:bg-slate-950">
+            <section id="benefits" className="py-24 px-4 bg-slate-50 dark:bg-slate-950">
               <div className="max-w-4xl mx-auto text-center">
                 <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-16 italic uppercase tracking-tighter">
                   {language === 'en' ? 'Benefits You Can Feel' : 'Beneficios Que Puedes Sentir'}
@@ -298,7 +284,7 @@ const App: React.FC = () => {
 
             <Testimonials language={language} t={t} />
 
-            <section className="py-24 px-4">
+            <section id="faq" className="py-24 px-4">
               <div className="max-w-3xl mx-auto">
                 <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-12 text-center italic uppercase tracking-tighter">
                   {language === 'en' ? 'Frequent Questions' : 'Preguntas Frecuentes'}
@@ -378,14 +364,14 @@ const App: React.FC = () => {
             <div className="min-h-[400px]">
               {currentStep.type === 'question' ? (
                 <QuestionCard
-                  question={currentStep.data as any}
+                  question={currentStep.data}
                   onSelect={handleAnswerSelect}
                   language={language}
                   t={t}
                 />
               ) : (
                 <InfoSlide
-                  slide={currentStep.data as any}
+                  slide={currentStep.data}
                   onNext={handleNextStep}
                   language={language}
                   t={t}
@@ -472,40 +458,55 @@ const App: React.FC = () => {
       </main>
 
       <footer className="bg-slate-900 text-white py-16 px-6">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div className="col-span-1 md:col-span-2">
-            <Logo theme="dark" className="w-10 h-10" />
-            <p className="text-slate-400 mt-6 max-w-sm leading-relaxed text-base font-medium">
-              {language === 'en'
-                ? 'Scientifically redefining male performance. The standard in modern pelvic health.'
-                : 'Redefiniendo el rendimiento masculino científicamente. El estándar en salud pélvica moderna.'}
-            </p>
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <div>
+              <Logo theme="dark" className="w-10 h-10" />
+              <p className="text-slate-400 text-sm font-medium mt-4 leading-relaxed">
+                {language === 'en'
+                  ? 'The standard in modern pelvic health.'
+                  : 'El estándar en salud pélvica moderna.'}
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-black text-sky-500 text-[10px] uppercase tracking-[0.3em] mb-6">
+                {language === 'en' ? 'Explore' : 'Explorar'}
+              </h4>
+              <ul className="space-y-3 text-slate-400 font-medium text-xs">
+                <li><a href="#how-it-works" className="hover:text-white transition-colors">{language === 'en' ? 'How it Works' : 'Cómo Funciona'}</a></li>
+                <li><a href="#benefits" className="hover:text-white transition-colors">{language === 'en' ? 'Benefits' : 'Beneficios'}</a></li>
+                <li><a href="#testimonials" className="hover:text-white transition-colors">{language === 'en' ? 'Testimonials' : 'Testimonios'}</a></li>
+                <li><a href="#faq" className="hover:text-white transition-colors">{language === 'en' ? 'FAQ' : 'Preguntas Frecuentes'}</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-black text-sky-500 text-[10px] uppercase tracking-[0.3em] mb-6">
+                {language === 'en' ? 'Contact' : 'Contacto'}
+              </h4>
+              <p className="text-slate-400 text-xs font-medium mb-4">
+                {language === 'en' ? 'Questions? We\'re here to help.' : '¿Preguntas? Estamos para ayudarte.'}
+              </p>
+              <a href="mailto:support@kegelcoach.com" className="text-sky-400 text-xs font-bold hover:text-sky-300 transition-colors">
+                support@kegelcoach.com
+              </a>
+              <div className="flex items-center gap-2 mt-6 text-slate-500 text-[10px] font-black uppercase tracking-widest">
+                <ShieldCheck className="w-4 h-4 text-sky-500" />
+                <span>{language === 'en' ? 'Secure & Private' : 'Seguro y Privado'}</span>
+              </div>
+            </div>
           </div>
 
-          <div>
-            <h4 className="font-black text-sky-500 text-[10px] uppercase tracking-[0.3em] mb-6">Product</h4>
-            <ul className="space-y-4 text-slate-400 font-medium text-xs">
-              <li><a href="#" className="hover:text-white transition-colors">Adaptive AI</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{language === 'en' ? 'Science' : 'Ciencia'}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{language === 'en' ? 'Case Studies' : 'Casos de estudio'}</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-black text-sky-500 text-[10px] uppercase tracking-[0.3em] mb-6">Company</h4>
-            <ul className="space-y-4 text-slate-400 font-medium text-xs">
-              <li><a href="#" className="hover:text-white transition-colors">{language === 'en' ? 'Privacy' : 'Privacidad'}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{language === 'en' ? 'Terms' : 'Términos'}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{language === 'en' ? 'Help' : 'Ayuda'}</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="max-w-6xl mx-auto pt-8 mt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-slate-500 text-[10px] font-black uppercase tracking-widest">
-          <p>© {new Date().getFullYear()} KEGELCOACH INTERNATIONAL</p>
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="w-4 h-4 text-sky-500" />
-            <span>SECURE DATA INFRASTRUCTURE</span>
+          <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-[10px] font-black uppercase tracking-widest">
+            <p>© {new Date().getFullYear()} KEGELCOACH</p>
+            <button
+              type="button"
+              onClick={handleStartQuiz}
+              className="text-sky-400 hover:text-sky-300 transition-colors"
+            >
+              {language === 'en' ? 'Start Your Journey' : 'Comienza Tu Viaje'} →
+            </button>
           </div>
         </div>
       </footer>
