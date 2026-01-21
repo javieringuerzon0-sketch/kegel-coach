@@ -24,13 +24,13 @@ const Pricing: React.FC<PricingProps> = ({ onSelect, language, t }) => {
             : 'Elige el camino hacia el máximo rendimiento. Únete a más de 250,000 hombres en todo el mundo usando entrenamiento diario respaldado por la ciencia.'}
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {PLANS.map((plan) => (
             <div 
               key={plan.id}
               className={`
                 relative bg-slate-50 dark:bg-slate-900 p-10 rounded-[2.5rem] transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)] flex flex-col border border-slate-100 dark:border-slate-800 hover:-translate-y-1.5 group
-                ${plan.isPopular ? 'md:scale-105 shadow-2xl ring-4 ring-sky-500/10' : ''}
+                ${plan.isPopular ? 'shadow-2xl ring-2 ring-sky-500/30' : ''}
               `}
             >
               {plan.isPopular && (
